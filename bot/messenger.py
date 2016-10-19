@@ -5,7 +5,7 @@ import random
 import sys
 
 logger = logging.getLogger(__name__)
-sys.setdefaultencoding("utf-8")
+#sys.setdefaultencoding("utf-8")
 
 class Messenger(object):
     def __init__(self, slack_clients):
