@@ -28,7 +28,8 @@ class Messenger(object):
         self.send_message(channel_id, txt)
 
     def write_greeting(self, channel_id, user_id):
-        greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations', 'Greetings child', 'Top ten hospital in the country!', \
+        greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations', 'Greetings child', 'Top ten hospital in the country!']
+                    ''' \
                      'One bit of sage advice for grandparents—show up, shut up, and smile.' 'Let"s have a fireside chat','Their smiles are a delight and their enjoyment of life palpable.'\
                     'Grandchildren are wonderfully insightful—one asked my wife why she always needs to be the boss. They have figured out that I like the golf channel and enjoy sitting with their grandfather commenting on various putting strokes. '\
                     'It is much easier being a grandparent than a parent—trust me.',\
@@ -38,7 +39,7 @@ class Messenger(object):
                     'Has anyone here not faced adversity? Congratulations if you haven’t, but no doubt you will.','“I’m being honest. I’m working with a third of what our Congress has promised”'\
                     'Enjoy the journey for surely yours will be special.', 'The refrain of this song from the 1959 Broadway musical, Fiorello, surely rings true today:\n Politics and poker, politics and poker', 'Where are the role models if our highest office-seekers are mud wrestling? '\
                      'Games of chance are not something we want to bet our future on.' '“Talk Less, Smile More.”']
-
+                    '''
 Shuffle up the cards and find the joker']
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
         self.send_message(channel_id, txt)
