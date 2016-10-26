@@ -6,6 +6,7 @@ import sys
 
 logger = logging.getLogger(__name__)
 #sys.setdefaultencoding("utf-8")
+file = open('Responses.txt', 'r')
 
 class Messenger(object):
     def __init__(self, slack_clients):
@@ -28,11 +29,11 @@ class Messenger(object):
             "> `<@" + bot_uid + "> attachment` - I'll demo a post with an attachment using the Web API. :paperclip:")
         self.send_message(channel_id, txt)
 
+
     def write_greeting(self, channel_id, user_id):
-        greetings = ['Hi', 'Hello', 'Nice to meet you', 'Howdy', 'Salutations', 
-                    'One bit of sage advice for grandparents. Show up, shut up, and smile.', 'Let"s have a fireside chat','Their smiles are a delight and their enjoyment of life palpable.','Grandchildren are wonderfully insightful. One asked my wife why she always needs to be the boss. They have figured out that I like the golf channel and enjoy sitting with their grandfather commenting on various putting strokes.','It is much easier being a grandparent than a parent. Trust me.','I have to admit that I frequently got graded as needs improvement as a parent. Yes, there was the time I forgot to pick up my son at school, and a time I put him on a sled in a snow storm attached to a dog and the dog took off across Valley Forge Park, and a time I forgot his duffel bag for a ski trip, and the time, well you get it.','This is a great moment. You are beginning a journey that will be life altering.', 'Fortunately, medicine is an egalitarian profession. Hard work and grit are the currency.', 'Each of you has many assets that you should understand and maximize.','Has anyone here not faced adversity? Congratulations if you have not, but no doubt you will.','I am being honest. I am working with a third of what our Congress has promised','Enjoy the journey for surely yours will be special.', 'The refrain of this song from a Broadway musical, Fiorello, surely rings true today. Politics and poker, politics and poker.  Shuffle up the cards and find the joker.',  'Talk Less, Smile More.','Where are the role models if our highest office seekers are mud wrestling? ', 'Games of chance are not something we want to bet our future on.']
-                
-                  
+        greetings = [file]
+
+
 
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
         self.send_message(channel_id, txt)
