@@ -9,7 +9,7 @@ import sys
 import random
 import os
 
-os.chdir('/Users/gbrittingham/Documents/Python/HealthInformatics/starter-python-bot/bot')
+
 with open('Responses.txt', 'r') as filestream:
     for line in filestream:
         currentline = line.split(",")
