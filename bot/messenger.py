@@ -6,7 +6,7 @@ import sys
 
 logger = logging.getLogger(__name__)
 #sys.setdefaultencoding("utf-8")
-file = open('Responses.txt', 'r')
+
 
 class Messenger(object):
     def __init__(self, slack_clients):
@@ -31,7 +31,9 @@ class Messenger(object):
 
 
     def write_greeting(self, channel_id, user_id):
-        greetings = [file]
+        with open('Responses.txt', 'r') as filestream:
+            for line in filestream:
+                responseline = line.split(",")
 
 
 
