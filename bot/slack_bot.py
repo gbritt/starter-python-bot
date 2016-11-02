@@ -20,12 +20,15 @@ class SlackBot(object):
         Args:
             token (str): Slack API Bot User token (for development token set in env)
         """
+        '''
         def set_glob_convostarted():
             global self.conversation_started    # Needed to modify global copy of globvar
         def set_convo_step():
             global self.convo_step    # Needed to modify global copy of globvar
+
         self.set_glob_convostarted();
         self.set_convo_step();
+        '''
         self.last_ping = 0
         self.keep_running = True
         conversation_started = False
