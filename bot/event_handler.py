@@ -4,7 +4,8 @@ import re
 
 logger = logging.getLogger(__name__)
 def set_glob_convostarted():
-    global conversation_started    # Needed to modify global copy of globvar
+    global conversation_started
+    conversation_started = True   # Needed to modify global copy of globvar
 def set_convo_step():
     global convo_step
 set_convo_step();
