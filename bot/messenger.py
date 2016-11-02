@@ -44,10 +44,10 @@ class Messenger(object):
 # Section for initial conversation between grossman and patient
     def write_convo1(self, channel_id, user_id):
         self.clients.send_user_typing_pause(channel_id)
-        suggestion = ["Hello! This chatbot has been created to help you identify questions you want to ask your doctor, so you can get what you need from your appointment."]
+        suggestion = "Hello! This chatbot has been created to help you identify questions you want to ask your doctor, so you can get what you need from your appointment."
         self.send_message(channel_id, suggestion)
         self.clients.send_user_typing_pause(channel_id)
-        question = ["Are you Here for an appointment?"]
+        question = "Are you Here for an appointment?"
         self.send_message(channel_id, question)
     def write_convo2(self, channel_id, user_id):
         self.clients.send_user_typing_pause(channel_id)
