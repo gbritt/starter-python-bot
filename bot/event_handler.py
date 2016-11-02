@@ -14,9 +14,9 @@ class RtmEventHandler(object):
 
         if 'type' in event:
             self._handle_by_type(event['type'], event)
-            self.conversation_started = self.conversation_started
+            conversation_started = conversation_started
 
-    def _handle_by_type(self, event_type):
+    def _handle_by_type(self, event_type, conversation_started):
         # See https://api.slack.com/rtm for a full list of events
         SlackBot.convo_step
         if event_type == 'error':
@@ -24,7 +24,7 @@ class RtmEventHandler(object):
             self.msg_writer.write_error(event['channel'], json.dumps(event))
         elif event_type == 'message':
             # message was sent to channel
-            self._handle_message(event)
+            self._handle_message(event, conversation_started)
         elif event_type == 'channel_joined':
             # you joined a channel
             self.msg_writer.write_help_message(event['channel'])
@@ -34,11 +34,11 @@ class RtmEventHandler(object):
         else:
             pass
 
-    def _handle_message(self, event):
+    def _handle_message(self, event, conversation_started):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             msg_txt = event['text']
-            if self.conversation_started == False:
+            if  conversation_started == False:
 
             #if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
@@ -47,7 +47,7 @@ class RtmEventHandler(object):
                 elif re.search('hi|hey|hello|howdy', msg_txt):
                     self.msg_writer.write_greeting(event['channel'], event['user'])
                     self.msg_write.write_convo1(event['channel'])
-                    self.conversation_started = True
+                    conversation_started = True
 
                 elif 'joke' in msg_txt:
                     self.msg_writer.write_joke(event['channel'])
@@ -57,15 +57,15 @@ class RtmEventHandler(object):
                     self.msg_writer.send_message(event['channel'], msg_txt)
                 else:
                     self.msg_writer.write_prompt(event['channel'])
-            elif self.conversation_started == True:
+            elif conversation_started == True:
                 if self.convo_step == 'AA' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo2(event['channel'])
                     self.convo_step = 'B'
                 elif convo_step == 'AA' and re.seach('no/No/NO/Nah/nah/nope/never', msg_test):
                     self.msg_writer.write_convo3_neg(event['channel'])
                     self.convo_step = 'AA'
-                    self.conversation_started = False
+                    conversation_started = False
                 elif convo_step == 'B' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo3(event['channel'])
                     self.convo_step = 'AA'
-                    self.conversation_started = False
+                    conversation_started = False
