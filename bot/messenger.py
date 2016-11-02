@@ -7,9 +7,7 @@ import os
 
 logger = logging.getLogger(__name__)
 #sys.setdefaultencoding("utf-8")
-with open('Responses.txt', 'r') as filestream:
-            for line in filestream:
-                greetings = line.split(",")
+
 
 
 class Messenger(object):
@@ -35,6 +33,9 @@ class Messenger(object):
 
 
     def write_greeting(self, channel_id, user_id):
+        with open('test.txt', 'r') as filestream:
+            for line in filestream:
+                greetings = line.split(",")
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
         self.send_message(channel_id, txt)
 
