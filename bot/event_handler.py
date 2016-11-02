@@ -4,10 +4,10 @@ import re
 
 logger = logging.getLogger(__name__)
 def set_glob_convostarted():
-    global self.conversation_started
+
     self.conversation_started = True   # Needed to modify global copy of globvar
 def set_convo_step():
-    global self.convo_step
+    self.convo_step = "A"
 self.set_convo_step();
 self.set_glob_convostarted();
 class RtmEventHandler(object):
