@@ -33,12 +33,12 @@ class Messenger(object):
 
 
     def write_greeting(self, channel_id, user_id):
-        '''
+        
         with open('test.txt', 'r') as filestream:
             for line in filestream:
                 greetings = line.split(",")
-                '''
-        greetings = os.getcwd()
+          
+       
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
         self.send_message(channel_id, txt)
 
