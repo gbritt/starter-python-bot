@@ -22,7 +22,7 @@ class SlackBot(object):
         """
         self.last_ping = 0
         self.keep_running = True
-        self.conversation_started = False
+        conversation_started = False
         if token is not None:
             self.clients = SlackClients(token)
 
