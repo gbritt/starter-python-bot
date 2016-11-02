@@ -37,7 +37,7 @@ class RtmEventHandler(object):
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             conversation_started == True
             msg_txt = event['text']
-            if conversation_started == False
+            if self.conversation_started == False:
 
             #if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
@@ -56,15 +56,15 @@ class RtmEventHandler(object):
                     self.msg_writer.send_message(event['channel'], msg_txt)
                 else:
                     self.msg_writer.write_prompt(event['channel'])
-            elif self.conversation_started == True
+            elif self.conversation_started == True:
                 if self.convo_step == 1.1 and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo2((event['channel'])
-                    self.convo_step = 2;
+                    self.convo_step = 2
                 elif convo_step == 1.1 and re.seach('no/No/NO/Nah/nah/nope/never', msg_test):
                     self.msg_writer.write_convo3_neg((event['channel'])
-                    self.convo_step = 1.1;
-                    self.conversation_started = False;
+                    self.convo_step = 1.1
+                    self.conversation_started = False
                 elif convo_step == 2 and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo3((event['channel'])
-                    self.convo_step = 1.1;
-                    self.conversation_started = False;
+                    self.convo_step = 1.1
+                    self.conversation_started = False
