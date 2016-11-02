@@ -57,7 +57,7 @@ class RtmEventHandler(object):
                     self.msg_writer.write_help_message(event['channel'])
                 elif re.search('hi|hey|hello|howdy', msg_txt):
                     self.msg_writer.write_greeting(event['channel'], event['user'])
-                    self.msg_write.write_convo1(event['channel'])
+                    self.msg_writer.write_convo1(event['channel'])
                     conversation_started = True
 
                 elif 'joke' in msg_txt:
