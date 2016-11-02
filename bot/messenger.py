@@ -33,15 +33,40 @@ class Messenger(object):
 
 
     def write_greeting(self, channel_id, user_id):
-        
+
         with open('test.txt', 'r') as filestream:
             for line in filestream:
                 greetings = line.split(",")
-          
-       
+
+
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
         self.send_message(channel_id, txt)
+# Section for initial conversation between grossman and patient
+    def write_convo1(self, channel_id, user_id):
+        self.clients.send_user_typing_pause(channel_id)
+        suggestion = "Hello! This chatbot has been created to help you identify questions you want to ask your doctor, so you can get what you need from your appointment."
+        self.send_message(channel_id, suggestion)
+        self.clients.send_user_typing_pause(channel_id)
+        question = "Are you Here for an appointment?"
+        self.send_message(channel_id, suggestion)
+    def write_convo2(self, channel_id, user_id):
+        self.clients.send_user_typing_pause(channel_id)
+        suggestion = "No personal information will be collected, and nothing typed here will be seen by a doctor. This purpose of this chat is to help you prepare for an appointment."
+        self.send_message(channel_id, suggestion)
+    def write_convo2(self, channel_id, user_id):
+        self.clients.send_user_typing_pause(channel_id)
+        suggestion = "To start, have you thought about the most important question you want to ask your doctor? "
+        self.send_message(channel_id, suggestion)
+    def write_convo3(self, channel_id, user_id):
+        self.clients.send_user_typing_pause(channel_id)
+        suggestion = "Terrific! You are on your way to making sure you have a productive appointment."
+        self.send_message(channel_id, suggestion)
+    def write_convo3_neg(self, channel_id, user_id):
+        self.clients.send_user_typing_pause(channel_id)
+        suggestion = "Okay, thank you for learning more about this chatbot today! Have a good appointment!"
+        self.send_message(channel_id, suggestion)
 
+        
     def write_prompt(self, channel_id):
         bot_uid = self.clients.bot_user_id()
         txt = "I'm sorry, I didn't quite understand... Can I help you? (e.g. `<@" + bot_uid + "> help`)"

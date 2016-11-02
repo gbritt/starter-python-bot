@@ -44,6 +44,17 @@ class RtmEventHandler(object):
                     self.msg_writer.write_help_message(event['channel'])
                 elif re.search('hi|hey|hello|howdy', msg_txt):
                     self.msg_writer.write_greeting(event['channel'], event['user'])
+                    self.msg_write.write_convo1(event['channel'])
+                    if re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
+                        self.msg_writer.write_convo2((event['channel'])
+                        if re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
+                            self.msg_writer.write_convo3((event['channel'])
+                        elif re.seach('no/No/NO/Nah/nah/nope/never', msg_test):
+                            self.msg_writer.write_convo3_neg((event['channel'])
+                    else
+                        self.msg_writer.write_prompt(event['channel'])
+
+
                 elif 'joke' in msg_txt:
                     self.msg_writer.write_joke(event['channel'])
                 elif 'attachment' in msg_txt:
