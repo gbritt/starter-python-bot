@@ -3,10 +3,10 @@ import logging
 import re
 
 logger = logging.getLogger(__name__)
-def set_glob_convostarted():
+def set_glob_convostarted(self):
 
     self.conversation_started = True   # Needed to modify global copy of globvar
-def set_convo_step():
+def set_convo_step(self):
     self.convo_step = "A"
 self.set_convo_step();
 self.set_glob_convostarted();
