@@ -6,7 +6,7 @@ import sys
 import os
 
 logger = logging.getLogger(__name__)
-sys.setdefaultencoding("utf-8")
+#sys.setdefaultencoding("utf-8")
 with open('Responses.txt', 'r') as filestream:
             for line in filestream:
                 greetings = line.split(",")
