@@ -52,7 +52,7 @@ class SlackBot(object):
             while self.keep_running:
                 for event in self.clients.rtm.rtm_read():
                     try:
-                        event_handler.handle(event)
+                        event_handler.handle(event, self.conversation_started)
                     except:
                         err_msg = traceback.format_exc()
                         logging.error('Unexpected error: {}'.format(err_msg))
