@@ -59,7 +59,7 @@ class RtmEventHandler(object):
             elif self.conversation_started == True:
                 if self.convo_step == '1.1' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo2((event['channel'])
-                    self.convo_step = '2'
+                    #self.convo_step = '2'
                 elif convo_step == '1.1' and re.seach('no/No/NO/Nah/nah/nope/never', msg_test):
                     self.msg_writer.write_convo3_neg((event['channel'])
                     self.convo_step = '1.1'
