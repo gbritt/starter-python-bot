@@ -8,8 +8,8 @@ def set_glob_convostarted(self):
     self.conversation_started = True   # Needed to modify global copy of globvar
 def set_convo_step(self):
     self.convo_step = "A"
-self.set_convo_step();
-self.set_glob_convostarted();
+set_convo_step();
+set_glob_convostarted();
 class RtmEventHandler(object):
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
