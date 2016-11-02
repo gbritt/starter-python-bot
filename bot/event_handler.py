@@ -69,7 +69,7 @@ class RtmEventHandler(object):
                 else:
                     self.msg_writer.write_prompt(event['channel'])
             elif self.conversation_started == True:
-                if convo_step == 'AA' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
+                if self.convo_step == 'AA' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo2(event['channel'])
                     self.convo_step = 'B'
                 elif convo_step == 'AA' and re.seach('no/No/NO/Nah/nah/nope/never', msg_test):
