@@ -3,8 +3,12 @@ import logging
 import re
 
 logger = logging.getLogger(__name__)
-
-
+def set_glob_convostarted():
+    global conversation_started    # Needed to modify global copy of globvar
+def set_convo_step():
+    global convo_step
+set_convo_step();
+set_glob_convostarted();
 class RtmEventHandler(object):
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
@@ -58,14 +62,14 @@ class RtmEventHandler(object):
                 else:
                     self.msg_writer.write_prompt(event['channel'])
             elif conversation_started == True:
-                if self.convo_step == 'AA' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
+                if convo_step == 'AA' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo2(event['channel'])
-                    self.convo_step = 'B'
+                    convo_step = 'B'
                 elif convo_step == 'AA' and re.seach('no/No/NO/Nah/nah/nope/never', msg_test):
                     self.msg_writer.write_convo3_neg(event['channel'])
-                    self.convo_step = 'AA'
+                    convo_step = 'AA'
                     conversation_started = False
                 elif convo_step == 'B' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo3(event['channel'])
-                    self.convo_step = 'AA'
+                    convo_step = 'AA'
                     conversation_started = False

@@ -20,12 +20,22 @@ class SlackBot(object):
         Args:
             token (str): Slack API Bot User token (for development token set in env)
         """
+        def set_glob_convostarted():
+            global conversation_started    # Needed to modify global copy of globvar
+        def set_convo_step():
+            global convo_step    # Needed to modify global copy of globvar
+        set_glob_convostarted();
+        set_convo_step();
         self.last_ping = 0
         self.keep_running = True
         conversation_started = False
-        self.convo_step = 'AA'
+        convo_step = 'AA'
         if token is not None:
             self.clients = SlackClients(token)
+    globvar = 0
+
+
+
 
     def start(self, resource):
         """Creates Slack Web and RTM clients for the given Resource
@@ -52,7 +62,7 @@ class SlackBot(object):
             while self.keep_running:
                 for event in self.clients.rtm.rtm_read():
                     try:
-                        event_handler.handle(event,conversation_started)
+                        event_handler.handle(event)
                     except:
                         err_msg = traceback.format_exc()
                         logging.error('Unexpected error: {}'.format(err_msg))
