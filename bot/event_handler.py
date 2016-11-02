@@ -72,11 +72,11 @@ class RtmEventHandler(object):
                 if self.convo_step == 'AA' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo2(event['channel'])
                     self.convo_step = 'B'
-                elif convo_step == 'AA' and re.seach('no/No/NO/Nah/nah/nope/never', msg_test):
+                elif self.convo_step == 'AA' and re.seach('no/No/NO/Nah/nah/nope/never', msg_test):
                     self.msg_writer.write_convo3_neg(event['channel'])
                     self.convo_step = 'AA'
                     self.conversation_started = False
-                elif convo_step == 'B' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
+                elif self.convo_step == 'B' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo3(event['channel'])
                     self.convo_step = 'AA'
                     self.conversation_started = False
