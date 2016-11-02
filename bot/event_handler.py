@@ -20,7 +20,7 @@ class RtmEventHandler(object):
             self._handle_by_type(event['type'], event)
 
 
-    def _handle_by_type(self, event_type):
+    def _handle_by_type(self, event_type, event):
         # See https://api.slack.com/rtm for a full list of events
 
         if event_type == 'error':
