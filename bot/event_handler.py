@@ -19,8 +19,8 @@ class RtmEventHandler(object):
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
         self.msg_writer = msg_writer
-    self.conversation_started = True
-    self.convo_step = "A"
+        self.conversation_started = True
+        self.convo_step = "A"
     def handle(self, event):
 
         if 'type' in event:
