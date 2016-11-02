@@ -18,7 +18,7 @@ class RtmEventHandler(object):
 
     def _handle_by_type(self, event_type, conversation_started):
         # See https://api.slack.com/rtm for a full list of events
-        SlackBot.convo_step
+        
         if event_type == 'error':
             # error
             self.msg_writer.write_error(event['channel'], json.dumps(event))
