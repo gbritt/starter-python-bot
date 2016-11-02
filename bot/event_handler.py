@@ -57,7 +57,7 @@ class RtmEventHandler(object):
                     self.msg_writer.write_help_message(event['channel'])
                 elif re.search('hi|hey|hello|howdy', msg_txt):
                     self.msg_writer.write_greeting(event['channel'], event['user'])
-                    self.msg_writer.write_convo1(event['channel'])
+                    self.msg_writer.write_convo1(event['channel'], event['user'])
                     conversation_started = True
 
                 elif 'joke' in msg_txt:
@@ -70,13 +70,13 @@ class RtmEventHandler(object):
                     self.msg_writer.write_prompt(event['channel'])
             elif self.conversation_started == True:
                 if self.convo_step == 'AA' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_text):
-                    self.msg_writer.write_convo2(event['channel'])
+                    self.msg_writer.write_convo2(event['channel'], event['user'])
                     self.convo_step = 'B'
                 elif self.convo_step == 'AA' and re.seach('no/No/NO/Nah/nah/nope/never', msg_text):
-                    self.msg_writer.write_convo3_neg(event['channel'])
+                    self.msg_writer.write_convo3_neg(event['channel'], event['user'])
                     self.convo_step = 'AA'
                     self.conversation_started = False
                 elif self.convo_step == 'B' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_text):
-                    self.msg_writer.write_convo3(event['channel'])
+                    self.msg_writer.write_convo3(event['channel'], event['user'])
                     self.convo_step = 'AA'
                     self.conversation_started = False
