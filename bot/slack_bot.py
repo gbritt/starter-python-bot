@@ -22,7 +22,7 @@ class SlackBot(object):
         """
         self.last_ping = 0
         self.keep_running = True
-        self.conversation_started = False
+        conversation_started = False
         self.convo_step = 'AA'
         if token is not None:
             self.clients = SlackClients(token)
@@ -52,7 +52,7 @@ class SlackBot(object):
             while self.keep_running:
                 for event in self.clients.rtm.rtm_read():
                     try:
-                        event_handler.handle(event, self.conversation_started)
+                        event_handler.handle(event,conversation_started)
                     except:
                         err_msg = traceback.format_exc()
                         logging.error('Unexpected error: {}'.format(err_msg))
