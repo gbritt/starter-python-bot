@@ -14,13 +14,13 @@ class RtmEventHandler(object):
         self.clients = slack_clients
         self.msg_writer = msg_writer
 
-    def handle(self, event, conversation_started):
+    def handle(self, event):
 
         if 'type' in event:
             self._handle_by_type(event['type'], event)
-            conversation_started = conversation_started
 
-    def _handle_by_type(self, event_type, conversation_started):
+
+    def _handle_by_type(self, event_type):
         # See https://api.slack.com/rtm for a full list of events
 
         if event_type == 'error':
@@ -38,7 +38,7 @@ class RtmEventHandler(object):
         else:
             pass
 
-    def _handle_message(self, event, conversation_started):
+    def _handle_message(self, event):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             msg_txt = event['text']
