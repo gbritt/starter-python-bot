@@ -4,12 +4,12 @@ import re
 
 logger = logging.getLogger(__name__)
 def set_glob_convostarted():
-    global conversation_started
-    conversation_started = True   # Needed to modify global copy of globvar
+    global self.conversation_started
+    self.conversation_started = True   # Needed to modify global copy of globvar
 def set_convo_step():
-    global convo_step
-set_convo_step();
-set_glob_convostarted();
+    global self.convo_step
+self.set_convo_step();
+self.set_glob_convostarted();
 class RtmEventHandler(object):
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
@@ -43,7 +43,7 @@ class RtmEventHandler(object):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             msg_txt = event['text']
-            if  conversation_started == False:
+            if  self.conversation_started == False:
 
             #if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
@@ -62,15 +62,15 @@ class RtmEventHandler(object):
                     self.msg_writer.send_message(event['channel'], msg_txt)
                 else:
                     self.msg_writer.write_prompt(event['channel'])
-            elif conversation_started == True:
+            elif self.conversation_started == True:
                 if convo_step == 'AA' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo2(event['channel'])
-                    convo_step = 'B'
+                    self.convo_step = 'B'
                 elif convo_step == 'AA' and re.seach('no/No/NO/Nah/nah/nope/never', msg_test):
                     self.msg_writer.write_convo3_neg(event['channel'])
-                    convo_step = 'AA'
-                    conversation_started = False
+                    self.convo_step = 'AA'
+                    self.conversation_started = False
                 elif convo_step == 'B' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_test):
                     self.msg_writer.write_convo3(event['channel'])
-                    convo_step = 'AA'
-                    conversation_started = False
+                    self.convo_step = 'AA'
+                    self.conversation_started = False
