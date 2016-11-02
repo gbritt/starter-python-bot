@@ -19,7 +19,7 @@ class RtmEventHandler(object):
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
         self.msg_writer = msg_writer
-        self.conversation_started = True
+        self.conversation_started = False
         self.convo_step = "AA"
     def handle(self, event):
 
