@@ -85,5 +85,5 @@ class RtmEventHandler(object):
                     msg_writer.write_convo3(event['channel'], event['user'])
                     RtmEventHandler.convo_step = 'AA'
                     RtmEventHandler.conversation_started = False
-                else
+                else:
                     elf.msg_writer.write_prompt(event['channel'])
