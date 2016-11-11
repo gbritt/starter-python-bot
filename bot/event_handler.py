@@ -32,8 +32,8 @@ class RtmEventHandler(object):
         exists = 'conversation_started' in locals() or 'conversation_started' in globals()
 
         if exists == False:
-            _setglobvar()
-            
+            self._setglobvar()
+
         if 'type' in event:
             self._handle_by_type(event['type'], event)
 
