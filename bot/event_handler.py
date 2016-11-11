@@ -20,8 +20,8 @@ class RtmEventHandler(object):
     def _setglobvar(self):
         global convo_step
         global conversation_started
-        global.convo_step = 'AA'
-        global.conversation_started = 'False'
+        convo_step = 'AA'
+        conversation_started = 'False'
 
 
     def __init__(self, slack_clients, msg_writer):
@@ -40,7 +40,8 @@ class RtmEventHandler(object):
 
     def _handle_by_type(self, event_type, event):
         # See https://api.slack.com/rtm for a full list of events
-
+        global conversation_started
+        global convo_step
         if event_type == 'error':
             # error
             self.msg_writer.write_error(event['channel'], json.dumps(event))
@@ -58,10 +59,12 @@ class RtmEventHandler(object):
 
     def _handle_message(self, event):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
+        global conversation_started
+        global convo_step
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             msg_txt = event['text']
 
-            if  global.conversation_started == 'False':
+            if  conversation_started == 'False':
 
             #if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
@@ -70,7 +73,7 @@ class RtmEventHandler(object):
                 elif re.search('hi|hey|hello|howdy', msg_txt):
                     self.msg_writer.write_greeting(event['channel'], event['user'])
                     self.msg_writer.write_convo1(event['channel'], event['user'])
-                    global.conversation_started = 'True'
+                    conversation_started = 'True'
 
                 elif 'joke' in msg_txt:
                     self.msg_writer.write_joke(event['channel'])
@@ -81,20 +84,20 @@ class RtmEventHandler(object):
                 else:
                     self.msg_writer.write_prompt(event['channel'])
 
-            elif global.conversation_started == 'True':
+            elif conversation_started == 'True':
                 if 'test' in msg_txt:
                     self.msg_writer.write_convo2(event['channel'], event['user'])
-                    global.convo_step = 'B'
-                if global.convo_step == 'AA' or 'Init' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
+                    convo_step = 'B'
+                if convo_step == 'AA' or 'Init' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo2(event['channel'], event['user'])
-                    global.convo_step = 'B'
-                elif global.convo_step == 'AA' or 'Init' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
+                    convo_step = 'B'
+                elif convo_step == 'AA' or 'Init' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
                     self.msg_writer.write_convo3_neg(event['channel'], event['user'])
-                    global.convo_step = 'AA'
-                    global.conversation_started = 'False'
-                elif global.convo_step == 'B' or 'Init' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
+                    convo_step = 'AA'
+                    conversation_started = 'False'
+                elif convo_step == 'B' or 'Init' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo3(event['channel'], event['user'])
-                    global.convo_step = 'AA'
-                    global.conversation_started = 'False'
+                    convo_step = 'AA'
+                    conversation_started = 'False'
                 else:
                     self.msg_writer.write_prompt(event['channel'])
