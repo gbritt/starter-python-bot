@@ -22,15 +22,18 @@ class RtmEventHandler(object):
         global conversation_started
         convo_step = 'AA'
         conversation_started = 'False'
-    exists = 'conversation_started' in locals() or 'conversation_started' in globals()
-    if exists == False:
-        _setglobvar()
+
+
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
         self.msg_writer = msg_writer
 
     def handle(self, event):
+        exists = 'conversation_started' in locals() or 'conversation_started' in globals()
 
+        if exists == False:
+            _setglobvar()
+            
         if 'type' in event:
             self._handle_by_type(event['type'], event)
 
