@@ -33,9 +33,9 @@ class RtmEventHandler(object):
 
         if exists == False:
             self._setglobvar()
-
-        if 'type' in event:
-            self._handle_by_type(event['type'], event)
+        else:
+            if 'type' in event:
+                self._handle_by_type(event['type'], event)
 
 
     def _handle_by_type(self, event_type, event):
