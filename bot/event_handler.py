@@ -77,7 +77,7 @@ class RtmEventHandler(object):
                     msg_writer.write_convo3_neg(event['channel'], event['user'])
                     RtmEventHandler.convo_step = 'AA'
                     RtmEventHandler.conversation_started = False
-                elif convo_step == 'B' or 'Init' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_txt):
+                elif RtmEventHandler.convo_step == 'B' or 'Init' and re.search('Yes/Yeah/Yup/mhm/mhmm/yessir/yessm/yes mam/yar/yuo/yul/ok', msg_txt):
                     msg_writer.write_convo3(event['channel'], event['user'])
                     RtmEventHandler.convo_step = 'AA'
                     RtmEventHandler.conversation_started = False
