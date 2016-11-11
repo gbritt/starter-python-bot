@@ -17,7 +17,7 @@ set_glob_convostarted();
 
 class RtmEventHandler(object):
     convo_step = 'Init'
-    conversation_started = 'First_Convo'
+    conversation_started = 'False'
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
         self.msg_writer = msg_writer
@@ -69,6 +69,7 @@ class RtmEventHandler(object):
                     self.msg_writer.send_message(event['channel'], msg_txt)
                 else:
                     self.msg_writer.write_prompt(event['channel'])
+
             elif RtmEventHandler.conversation_started == 'False':
                 if RtmEventHandler.convo_step == 'AA' or 'Init' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo2(event['channel'], event['user'])
