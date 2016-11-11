@@ -17,14 +17,14 @@ set_glob_convostarted();
 
 
 class RtmEventHandler(object):
-    def _setglobvar(self):
+    def _setglobvar():
         global convo_step
         global conversation_started
         convo_step = 'AA'
         conversation_started = 'False'
     exists = 'conversation_started' in locals() or 'conversation_started' in globals()
     if exists == False:
-        self._setglobvar()
+        setglobvar()
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
         self.msg_writer = msg_writer
