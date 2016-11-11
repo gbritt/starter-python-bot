@@ -66,7 +66,7 @@ class RtmEventHandler(object):
 
             if  conversation_started == 'False':
 
-            #if self.clients.is_bot_mention(msg_txt):
+            and if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
                 if 'help' in msg_txt:
                     self.msg_writer.write_help_message(event['channel'])
@@ -86,6 +86,7 @@ class RtmEventHandler(object):
                     self.msg_writer.write_prompt(event['channel'])
 
             elif conversation_started == 'True':
+            and if self.clients.is_bot_mention(msg_txt):
                 if 'test' in msg_txt:
                     self.msg_writer.write_convo2(event['channel'], event['user'])
                     convo_step = '1'
