@@ -19,7 +19,8 @@ set_glob_convostarted();
 class RtmEventHandler(object):
     def setglobvar():
         global convo_step
-        convo_step = 'Init'
+        global conversation_started
+        convo_step = 'AA'
         conversation_started = 'False'
 
     def __init__(self, slack_clients, msg_writer):
@@ -54,7 +55,7 @@ class RtmEventHandler(object):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             msg_txt = event['text']
-            if conversation_started != 'True' or 'False':
+            if 'conversation_started' in locals() or 'conversation_started' in globals() == False :
                 setglobvar()
 
             if  conversation_started == 'False':
@@ -87,10 +88,10 @@ class RtmEventHandler(object):
                 elif convo_step == 'AA' or 'Init' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
                     self.msg_writer.write_convo3_neg(event['channel'], event['user'])
                     convo_step = 'AA'
-                    conversation_started = False
+                    conversation_started = 'False'
                 elif convo_step == 'B' or 'Init' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo3(event['channel'], event['user'])
                     convo_step = 'AA'
-                    conversation_started = False
+                    conversation_started = 'False'
                 else:
                     self.msg_writer.write_prompt(event['channel'])
