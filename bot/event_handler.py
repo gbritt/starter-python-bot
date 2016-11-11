@@ -89,7 +89,7 @@ class RtmEventHandler(object):
                 if 'test' in msg_txt:
                     self.msg_writer.write_convo2(event['channel'], event['user'])
                     convo_step = '1'
-                if convo_step == '2' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
+                if convo_step == '2' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yes|yeah|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo2_1(event['channel'], event['user'])
                     self.msg_writer.write_convo2_2(event['channel'], event['user'])
                     convo_step = '3'
@@ -97,12 +97,29 @@ class RtmEventHandler(object):
                     self.msg_writer.write_convo2_neg(event['channel'], event['user'])
                     convo_step = '1'
                     conversation_started = 'False'
-                elif convo_step == '3' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
+                elif convo_step == '3' and re.search('Yes|Yeah|yes|yeah|yup|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo3(event['channel'], event['user'])
-                    convo_step = '1'
-                    conversation_started = 'False'
+                    convo_step = '4'
+
                 elif convo_step == '3' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
                     self.msg_writer.write_convo3_neg(event['channel'], event['user'])
+                    convo_step = '1'
+                    conversation_started = 'False'
+                elif convo_step == '4' and re.search('Yes|Yeah|yes|yeah|yup|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
+                    self.msg_writer.write_convo4(event['channel'], event['user'])
+                    convo_step = '5'
+
+                elif convo_step == '4' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
+                    self.msg_writer.write_convo4_neg(event['channel'], event['user'])
+                    convo_step = '1'
+                    conversation_started = 'False'
+
+                elif convo_step == '5' and re.search('Yes|Yeah|yes|yeah|yup|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
+                    self.msg_writer.write_convo5(event['channel'], event['user'])
+                    convo_step = '1'
+                    conversation_started = 'False'
+                elif convo_step == '5' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
+                    self.msg_writer.write_convo5_neg(event['channel'], event['user'])
                     convo_step = '1'
                     conversation_started = 'False'
                 else:
