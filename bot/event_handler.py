@@ -50,7 +50,7 @@ class RtmEventHandler(object):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             msg_txt = event['text']
-            if  RtmEventHandler.conversation_started == 'False' or RtmEventHandler.conversation_started == 'First_Convo':
+            if  RtmEventHandler.conversation_started == 'True' or RtmEventHandler.conversation_started == 'First_Convo':
 
             #if self.clients.is_bot_mention(msg_txt):
                 # e.g. user typed: "@pybot tell me a joke!"
@@ -69,7 +69,7 @@ class RtmEventHandler(object):
                     self.msg_writer.send_message(event['channel'], msg_txt)
                 else:
                     self.msg_writer.write_prompt(event['channel'])
-            elif RtmEventHandler.conversation_started == 'True':
+            elif RtmEventHandler.conversation_started == 'False':
                 if RtmEventHandler.convo_step == 'AA' or 'Init' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo2(event['channel'], event['user'])
                     RtmEventHandler.convo_step = 'B'
