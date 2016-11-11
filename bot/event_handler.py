@@ -24,7 +24,7 @@ class RtmEventHandler(object):
         conversation_started = 'False'
     exists = 'conversation_started' in locals() or 'conversation_started' in globals()
     if exists == False:
-        setglobvar()
+        _setglobvar()
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
         self.msg_writer = msg_writer
