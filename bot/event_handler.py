@@ -55,7 +55,8 @@ class RtmEventHandler(object):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             msg_txt = event['text']
-            if 'conversation_started' in locals() or 'conversation_started' in globals() == False :
+            exists = 'conversation_started' in locals() or 'conversation_started' in globals()
+            if exists == False:
                 setglobvar()
 
             if  conversation_started == 'False':
@@ -78,7 +79,7 @@ class RtmEventHandler(object):
                 else:
                     self.msg_writer.write_prompt(event['channel'])
 
-            elif conversation_started == 'False':
+            elif conversation_started == 'True':
                 if 'test' in msg_txt:
                     self.msg_writer.write_convo2(event['channel'], event['user'])
                     convo_step = 'B'
