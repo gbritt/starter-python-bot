@@ -49,14 +49,21 @@ class Messenger(object):
         self.clients.send_user_typing_pause(channel_id)
         question = "Are you Here for an appointment?"
         self.send_message(channel_id, question)
-    def write_convo2(self, channel_id, user_id):
-        self.clients.send_user_typing_pause(channel_id)
-        suggestion = "No personal information will be collected, and nothing typed here will be seen by a doctor. This purpose of this chat is to help you prepare for an appointment."
-        self.send_message(channel_id, suggestion)
-    def write_convo2(self, channel_id, user_id):
+    def write_convo2_1(self, channel_id, user_id):
         self.clients.send_user_typing_pause(channel_id)
         suggestion = "To start, have you thought about the most important question you want to ask your doctor? "
         self.send_message(channel_id, suggestion)
+
+    def write_convo2_2(self, channel_id, user_id):
+        self.clients.send_user_typing_pause(channel_id)
+        suggestion = "No personal information will be collected, and nothing typed here will be seen by a doctor. This purpose of this chat is to help you prepare for an appointment."
+        self.send_message(channel_id, suggestion)
+
+    def write_convo2_neg(self, channel_id, user_id):
+        self.clients.send_user_typing_pause(channel_id)
+        suggestion = "Okay, have a great day!"
+        self.send_message(channel_id, suggestion)
+
     def write_convo3(self, channel_id, user_id):
         self.clients.send_user_typing_pause(channel_id)
         suggestion = "Terrific! You are on your way to making sure you have a productive appointment."
@@ -65,8 +72,7 @@ class Messenger(object):
         self.clients.send_user_typing_pause(channel_id)
         suggestion = "Okay, thank you for learning more about this chatbot today! Have a good appointment!"
         self.send_message(channel_id, suggestion)
-
-
+        
     def write_prompt(self, channel_id):
         bot_uid = self.clients.bot_user_id()
         txt = "I'm sorry, I didn't quite understand... Can I help you? (e.g. `<@" + bot_uid + "> help`)"
