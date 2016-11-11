@@ -22,7 +22,9 @@ class RtmEventHandler(object):
         global conversation_started
         convo_step = 'AA'
         conversation_started = 'False'
-
+    exists = 'conversation_started' in locals() or 'conversation_started' in globals()
+    if exists == False:
+        self._setglobvar()
     def __init__(self, slack_clients, msg_writer):
         self.clients = slack_clients
         self.msg_writer = msg_writer
@@ -55,9 +57,6 @@ class RtmEventHandler(object):
         # Filter out messages from the bot itself, and from non-users (eg. webhooks)
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             msg_txt = event['text']
-            exists = 'conversation_started' in locals() or 'conversation_started' in globals()
-            if exists == False:
-                self._setglobvar()
 
             if  conversation_started == 'False':
 
