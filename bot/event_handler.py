@@ -17,7 +17,7 @@ set_glob_convostarted();
 
 
 class RtmEventHandler(object):
-    def setglobvar():
+    def _setglobvar():
         global convo_step
         global conversation_started
         convo_step = 'AA'
@@ -57,7 +57,7 @@ class RtmEventHandler(object):
             msg_txt = event['text']
             exists = 'conversation_started' in locals() or 'conversation_started' in globals()
             if exists == False:
-                setglobvar()
+                self._setglobvar()
 
             if  conversation_started == 'False':
 
