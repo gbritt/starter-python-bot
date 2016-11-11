@@ -17,7 +17,7 @@ set_glob_convostarted();
 
 
 class RtmEventHandler(object):
-    def _setglobvar():
+    def _setglobvar(self):
         global convo_step
         global conversation_started
         convo_step = 'AA'
