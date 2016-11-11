@@ -78,12 +78,12 @@ class RtmEventHandler(object):
                     self.msg_writer.write_convo2(event['channel'], event['user'])
                     RtmEventHandler.convo_step = 'B'
                 elif RtmEventHandler.convo_step == 'AA' or 'Init' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
-                    msg_writer.write_convo3_neg(event['channel'], event['user'])
+                    self.msg_writer.write_convo3_neg(event['channel'], event['user'])
                     RtmEventHandler.convo_step = 'AA'
                     RtmEventHandler.conversation_started = False
                 elif RtmEventHandler.convo_step == 'B' or 'Init' and re.search('Yes|Yeah|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
-                    msg_writer.write_convo3(event['channel'], event['user'])
+                    self.msg_writer.write_convo3(event['channel'], event['user'])
                     RtmEventHandler.convo_step = 'AA'
                     RtmEventHandler.conversation_started = False
                 else:
-                    elf.msg_writer.write_prompt(event['channel'])
+                    self.msg_writer.write_prompt(event['channel'])
