@@ -69,7 +69,7 @@ class Messenger(object):
         suggestion = "Terrific! You are on your way to making sure you have a productive appointment."
         self.send_message(channel_id, suggestion)
         self.clients.send_user_typing_pause(channel_id)
-        suggestion2 = "Next, you should think about any prescriptions or refills that you want to ask about. This included medicaitons, devices, and glasses."
+        suggestion2 = "Next, you should think about any prescriptions or refills that you want to ask about. This included medications, devices, and glasses."
         self.send_message(channel_id, suggestion2)
         self.clients.send_user_typing_pause(channel_id)
         suggestion3 = "Have you thought about it?"
@@ -87,10 +87,11 @@ class Messenger(object):
         suggestion2 = "Next, do you have any sensitive or private topics that you want to ask your doctor about? The doctor's office is a safe space to ask questions."
         self.send_message(channel_id, suggestion2)
         self.clients.send_user_typing_pause(channel_id)
-        suggestion3 = "Many patients find this difficult, but together you and your dcotor can take better care of your health if you share any relevant information"
+        suggestion3 = "Many patients find this difficult, but together you and your dcotor can take better care of your health if you share any relevant information."
         self.send_message(channel_id, suggestion3)
         self.clients.send_user_typing_pause(channel_id)
         suggestion4 = "Are you thinking about it? You are almost done!"
+        self.send_message(channel_id, suggestion4)
     def write_convo4_neg(self, channel_id, user_id):
         self.clients.send_user_typing_pause(channel_id)
         suggestion = "Okay, well think about it you dummy! Have a good appointment!"
