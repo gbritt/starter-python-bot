@@ -73,7 +73,7 @@ class RtmEventHandler(object):
                     self.msg_writer.write_convo1(event['channel'], event['user'])
                     conversation_started = 'True'
                     convo_step = '2'
-                    self.msg_write.write_history(event['channel'], event['user'])
+                    self.msg_writer.write_history(event['channel'], event['user'])
 
                 elif 'joke' in msg_txt:
                     self.msg_writer.write_joke(event['channel'])
