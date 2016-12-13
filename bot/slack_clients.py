@@ -53,5 +53,5 @@ class SlackClients(object):
         #history = self.rtm.api_call('channels.history', channel = channel_id)
         history = self.rtm.api_call('channels.list')
         return history
-        #print self.rtm.api_call("chat.post_Message", as_user = "true:", channel = channel_id, text = test)
+        #print self.rtm.api_call("chat.post_Message", as_user = "true:", #channel = channel_id, text = test)
         #self.trm.server.send_to_websocket
