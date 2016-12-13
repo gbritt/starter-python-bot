@@ -50,13 +50,13 @@ class Messenger(object):
         fileName = 'test.txt'
         channelHistory = self.clients.get_chat_history(channel_id)
 
-        with open(fileName, 'w') as outFile:
-            outFile.write('test')
+        #with open(fileName, 'w') as outFile:
+            #outFile.write('test')
         '''
         with open(fileName, 'w') as outFile:
             json.dumps({'channel_history': channelHistory}, outFile, indent = 4)
         '''
-        self.clients.upload_file('test.txt', channel_id) #can probably dead with channel id better
+        self.clients.upload_file('out.txt', channel_id) #can probably dead with channel id better
         #self.send_message(channel_id, history)
     def write_convo1(self, channel_id, user_id):
         self.clients.send_user_typing_pause(channel_id)
