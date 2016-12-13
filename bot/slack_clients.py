@@ -58,11 +58,13 @@ class SlackClients(object):
         '''
         #history = self.rtm.api_call('channels.history', channel = channel_id)
         channelHistory = self.rtm.api_call('channels.history', channel = channel_id)
+        c
         '''
-        with open(channelInfo, 'r') as handle:
+        with open(channelHistory, 'r') as handle:
             parsed = json.load(handle)
         '''
-        return json.dumps({'channel_history': channelHistory}, indent = 4)
+        with open(fileName, 'w') as outFile:
+            dump = json.dumps({'channel_history': channelHistory}, outFile, indent = 4)
 
         '''
         with open(fileName, 'w') as outFile:

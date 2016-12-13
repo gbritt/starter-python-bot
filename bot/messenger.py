@@ -47,8 +47,14 @@ class Messenger(object):
         self.send_message(channel_id, txt)
 # Section for initial conversation between grossman and patient
     def write_history(self,channel_id,user_id):
+        fileName = 'test.txt'
         history = self.clients.get_chat_history(channel_id)
-        self.clients.upload_file(history, channel_id) #can probably dead with channel id better
+
+
+        self.clients.upload_file(
+        with open(fileName, 'w') as outFile:
+            print history
+            , channel_id) #can probably dead with channel id better
         #self.send_message(channel_id, history)
     def write_convo1(self, channel_id, user_id):
         self.clients.send_user_typing_pause(channel_id)
