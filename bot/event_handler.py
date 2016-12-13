@@ -1,6 +1,7 @@
 import json
 import logging
 import re
+import NLTK_implement
 
 logger = logging.getLogger(__name__)
 '''
@@ -24,7 +25,7 @@ class RtmEventHandler(object):
         conversation_started = 'False'
 
 
-    def __init__(self, slack_clients, msg_writer):
+    def __init__(self, slack_clients, msg_writer, NLTK):
         self.clients = slack_clients
         self.msg_writer = msg_writer
 
@@ -39,7 +40,7 @@ class RtmEventHandler(object):
     def checkNLP(self,event):
         if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
             msg_txt = event['text']
-
+            tokenize, pos = NLTK_implementself.recieve_text(msg_txt)
 
 
 
@@ -79,7 +80,8 @@ class RtmEventHandler(object):
                     conversation_started = 'True'
                     convo_step = '2'
                     self.msg_writer.write_history(event['channel'], event['user'])
-
+                    tokenize, pos = NLTK_implementself.recieve_text(msg_txt)
+                    self.msg_write.write_NLP(event['channel'], event['user'], tokenize, pos)
                 elif 'joke' in msg_txt:
                     self.msg_writer.write_joke(event['channel'])
                 elif 'attachment' in msg_txt:

@@ -2,11 +2,30 @@
 # nltk implementation
 import json
 import logging
-import re
 import nltk
+import re
+import nltk.classify.util
+from nltk.classify import NaiveBayesClassifier
+
+class NLTK(object):
+    def __init__(self, slack_clients):
+        self.clients = slack_clients
+    def recieve_text(self,text):
+        text = text
+        words = text.flatMap(word_tokenize)
+        test1 = words.take(10)
+        pos_word = words.map(pos_tag)
+        test2 = pos_word.take(5)
+        return test1, test2
+    def word_feats(words):
+        return dict([(word, True) for word in words])
+    def word_tokenize(x):
+        return nltk.word_tokenize(x)
+    def pos_tag(x):
+        return nltk.pos_tag([x])
 
 
-'''
+
 
 dat=str(nltk.data.load('corpora/final_dataset/'+str(address),format='raw')).lower()#dat contains data of the current text files
         tokenizer=list(sent_tokenize(dat))#all the data being tokenized into sentences and made alist of that
