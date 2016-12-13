@@ -2,6 +2,9 @@
 import logging
 import re
 import time
+import json
+import argparse
+import os
 
 from slacker import Slacker
 from slackclient import SlackClient
@@ -51,7 +54,9 @@ class SlackClients(object):
         return messages
         '''
         #history = self.rtm.api_call('channels.history', channel = channel_id)
-        history = self.rtm.api_call('channels.list')
-        return 'test2'
+        history = self.rtm.api_call('channels.info', channel = "#gbot4greg")
+
+        channels = slack.channels.list().body['channels']
+        return print(channel['name'])
         #print self.rtm.api_call("chat.post_Message", as_user = "true:", #channel = channel_id, text = test)
         #self.trm.server.send_to_websocket
