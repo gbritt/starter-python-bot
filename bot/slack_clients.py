@@ -41,22 +41,9 @@ class SlackClients(object):
         time.sleep(sleep_time)
     def upload_file(self,file,channel_id):
         #self.rtm.api_call('')
-        self.web.files.upload(file, channels = self.web.channels.get_channel_id('channel_id'))
+        self.rtm.api_call('files.upload',file, channel = channel_id)
 
-    def upload(self, file, channel)
-        token = self.token
-        options = {
-        token: @team.bot[token],
-        file: File.new("./tmp/composed/#{file.timestamp}", 'rb'),
-        filename: "composed_" + file.name,
-        title: "Composed " + file.title,
-        channels: channel
-        }
 
-  res = RestClient.post 'https://slack.com/api/files.upload', options
-  # Return the uploaded file's ID
-  JSON.parse(res.body)["file"]["id"]
-end
     def get_chat_history(self,channel_id, pageSize = 100):
         '''
         channels = slack.channels.list().body['channels']
