@@ -39,6 +39,9 @@ class SlackClients(object):
         user_typing_json = {"type": "typing", "channel": channel_id}
         self.rtm.server.send_to_websocket(user_typing_json)
         time.sleep(sleep_time)
+    def upload_file(self,channel_id,file):
+        #self.rtm.api_call('')
+        self.web.files.upload(file)
     def get_chat_history(self,channel_id, pageSize = 100):
         '''
         channels = slack.channels.list().body['channels']
@@ -60,7 +63,7 @@ class SlackClients(object):
             parsed = json.load(handle)
         '''
         return json.dumps({'channel_history': channelHistory}, indent = 4)
-        
+
         '''
         with open(fileName, 'w') as outFile:
             print("writing {0} records to {1}".format(len(messages), fileName))

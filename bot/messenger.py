@@ -25,11 +25,7 @@ class Messenger(object):
         logger.debug('Sending msg: %s to channel: %s' % (msg, channel_id))
         channel = self.clients.rtm.server.channels.find(channel_id)
         channel.send_message(msg)
-    def upload_file(self,channel_id,file):
-            if isinstance(channel_id, dict):
-                channel_id = channel_id['id']
-            channel = self.clients.rtm.server.channels.find(channel_id)
-            channel.files.upload(file)
+
     def write_help_message(self, channel_id):
         bot_uid = self.clients.bot_user_id()
         txt = '{}\n{}\n{}\n{}'.format(
@@ -52,7 +48,7 @@ class Messenger(object):
 # Section for initial conversation between grossman and patient
     def write_history(self,channel_id,user_id):
         history = self.clients.get_chat_history(channel_id)
-        self.upload_file(channel_id, history)
+        self.clients.upload_file(history, channels = slack.channels.get_channel_id('channel_id')) #can probably dead with channel id better
         #self.send_message(channel_id, history)
     def write_convo1(self, channel_id, user_id):
         self.clients.send_user_typing_pause(channel_id)
