@@ -101,7 +101,7 @@ class RtmEventHandler(object):
                 elif convo_step == '3' and re.search('Yes|Yeah|yes|yeah|yup|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo3(event['channel'], event['user'])
                     convo_step = '4'
-                    self.
+
 
                 elif convo_step == '3' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
                     self.msg_writer.write_convo3_neg(event['channel'], event['user'])
@@ -119,6 +119,7 @@ class RtmEventHandler(object):
                 elif convo_step == '5' and re.search('Yes|Yeah|yes|yeah|yup|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo5(event['channel'], event['user'])
                     convo_step = '1'
+                    self.get_history(event['channel'], event['user'])
                     conversation_started = 'False'
                 elif convo_step == '5' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
                     self.msg_writer.write_convo5_neg(event['channel'], event['user'])
