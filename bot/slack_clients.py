@@ -37,5 +37,5 @@ class SlackClients(object):
         self.rtm.server.send_to_websocket(user_typing_json)
         time.sleep(sleep_time)
     def get_chat_history(self,channel_id):
-        return self.web.channels.history('#gbot4greg')
+        
         return self.web.channels.history(channel_id)
