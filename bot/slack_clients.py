@@ -41,7 +41,7 @@ class SlackClients(object):
         time.sleep(sleep_time)
     def upload_file(self,channel_id,file):
         #self.rtm.api_call('')
-        self.web.files.upload(file)
+        self.web.files.upload(file, channels = slack.channels.get_channel_id('channel_id'))
     def get_chat_history(self,channel_id, pageSize = 100):
         '''
         channels = slack.channels.list().body['channels']
