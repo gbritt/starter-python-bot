@@ -54,7 +54,7 @@ class SlackClients(object):
         return messages
         '''
         #history = self.rtm.api_call('channels.history', channel = channel_id)
-        channelInfo = self.rtm.api_call('channels.info', channel = "#gbot4greg")
+        channelInfo = self.rtm.api_call('channels.info', channel = channel_id)
         '''
         with open(channelInfo, 'r') as handle:
             parsed = json.load(handle)
