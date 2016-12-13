@@ -60,6 +60,7 @@ class SlackClients(object):
             parsed = json.load(handle)
         '''
         return json.dumps({'channel_history': channelHistory}, indent = 4)
+        
         '''
         with open(fileName, 'w') as outFile:
             print("writing {0} records to {1}".format(len(messages), fileName))
