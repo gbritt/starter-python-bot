@@ -154,3 +154,14 @@ class Messenger(object):
             "color": "#7CD197",
         }
         self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
+
+    def text_attachment(self, channel_id, user_id):
+        txt = "Hello! This is your chat log"
+        attachment = {
+
+            "title": "THi is a test",
+            "text": txt,
+            "fallback": txt,
+            "color": "#7CD197",
+        }
+        self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')

@@ -43,7 +43,7 @@ class SlackClients(object):
     def upload_file(self,file,channel_id):
         #self.rtm.api_call('')
         self.rtm.api_call('files.upload', channel = channel_id)
-        #
+        #this is not working
 
 
     def get_chat_history(self,channel_id, pageSize = 100):
@@ -62,6 +62,7 @@ class SlackClients(object):
         '''
         #history = self.rtm.api_call('channels.history', channel = channel_id)
         channelHistory = self.rtm.api_call('channels.history', channel = channel_id)
+        return channelHistory
 
         '''
         with open(channelHistory, 'r') as handle:

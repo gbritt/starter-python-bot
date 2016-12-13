@@ -93,6 +93,7 @@ class RtmEventHandler(object):
                     self.msg_writer.write_convo2_2(event['channel'], event['user'])
                     convo_step = '3'
                     self.msg_writer.write_history(event['channel'], event['user'])
+                    self.msg_writer.text_attachment(event['channel'], event['user'])
                 elif convo_step == '2' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
                     self.msg_writer.write_convo2_neg(event['channel'], event['user'])
                     convo_step = '1'

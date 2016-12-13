@@ -33,3 +33,8 @@ class SlackRequest(object):
                 'https://{0}/api/{1}'.format(domain, request),
                 data=dict(post_data, token=token),
             )
+
+            '''
+            files = {'file': open('test.png', 'rb')}
+            client.api_call('files.upload', channels=[...], filename='pic.png', files=files)
+            ''' #to call
