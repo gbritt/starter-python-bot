@@ -37,7 +37,7 @@ class SlackClients(object):
         self.rtm.server.send_to_websocket(user_typing_json)
         time.sleep(sleep_time)
     def get_chat_history(self,channel_id, pageSize = 100):
-'''
+        '''
         channels = slack.channels.list().body['channels']
         messages = []
         lastTimestamp = None
@@ -55,24 +55,3 @@ class SlackClients(object):
         return a
         #print self.rtm.api_call("chat.post_Message", as_user = "true:", channel = channel_id, text = test)
         #self.trm.server.send_to_websocket
-'''
-    def getChannels(slack, dryRun):
-  channels = slack.channels.list().body['channels']
-
-  print("\nfound channels: ")
-  for channel in channels:
-    print(channel['name'])
-
-  if not dryRun:
-    parentDir = "channels"
-    mkdir(parentDir)
-    for channel in channels:
-      print("getting history for channel {0}".format(channel['name']))
-      fileName = "{parent}/{file}.json".format(parent = parentDir, file = channel['name'])
-      messages = getHistory(slack.channels, channel['id'])
-      channelInfo = slack.channels.info(channel['id']).body['channel']
-      with open(fileName, 'w') as outFile:
-        print("writing {0} records to {1}".format(len(messages), fileName))
-        json.dump({'channel_info': channelInfo, 'messages': messages }, outFile, indent=4)
-
-'''
