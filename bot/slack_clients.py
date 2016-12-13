@@ -22,6 +22,7 @@ class SlackClients(object):
         # SlackClient is a Slack Websocket RTM API Client
         self.rtm = SlackClient(token)
 
+
     def bot_user_id(self):
         return self.rtm.server.login_data['self']['id']
 
@@ -41,7 +42,8 @@ class SlackClients(object):
         time.sleep(sleep_time)
     def upload_file(self,file,channel_id):
         #self.rtm.api_call('')
-        self.rtm.api_call('files.upload',file, channel = channel_id)
+        self.rtm.api_call('files.upload', channel = channel_id)
+        #
 
 
     def get_chat_history(self,channel_id, pageSize = 100):
