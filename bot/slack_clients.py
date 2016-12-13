@@ -36,3 +36,9 @@ class SlackClients(object):
         user_typing_json = {"type": "typing", "channel": channel_id}
         self.rtm.server.send_to_websocket(user_typing_json)
         time.sleep(sleep_time)
+    def get_chat_history(self,channel_id):
+        return self.web.im.history(channel = channel_id)
+        '''
+        return self.clients.api_call(“im.history”, channel=channel_id)
+        return self.rtm.server.im.history(channel=channel_id)
+        '''

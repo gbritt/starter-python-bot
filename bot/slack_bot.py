@@ -56,9 +56,11 @@ class SlackBot(object):
                 self.clients.rtm.server.username,
                 self.clients.rtm.server.login_data['team']['name'],
                 self.clients.rtm.server.domain))
+                
 
             msg_writer = Messenger(self.clients)
             event_handler = RtmEventHandler(self.clients, msg_writer)
+
 
             while self.keep_running:
                 for event in self.clients.rtm.rtm_read():
