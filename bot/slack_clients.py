@@ -54,9 +54,19 @@ class SlackClients(object):
         return messages
         '''
         #history = self.rtm.api_call('channels.history', channel = channel_id)
-        history = self.rtm.api_call('channels.info', channel = "#gbot4greg")
+        channelInfo = self.rtm.api_call('channels.info', channel = "#gbot4greg")
+        '''
+        with open(channelInfo, 'r') as handle:
+            parsed = json.load(handle)
+        '''
+        return json.dumps({'channel_info': channelInfo}, indent = 4)
+        '''
+        with open(fileName, 'w') as outFile:
+            print("writing {0} records to {1}".format(len(messages), fileName))
+            json.dump({'channel_info': channelInfo, 'messages': messages }, outFile, indent=4)
 
         channels = slack.channels.list().body['channels']
         return (channel['name'])
         #print self.rtm.api_call("chat.post_Message", as_user = "true:", #channel = channel_id, text = test)
         #self.trm.server.send_to_websocket
+        '''
