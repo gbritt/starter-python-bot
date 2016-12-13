@@ -26,7 +26,8 @@ class Messenger(object):
         channel = self.clients.rtm.server.channels.find(channel_id)
         channel.send_message(msg)
     def upload_file(self,channel_id,file):
-            channel_id = channel_id['id']
+            if isinstance(channel_id, dict):
+                channel_id = channel_id['id']
             channel = self.clinets.rtm.server.channels.find(channel_id)
             channel.files.upload(file)
     def write_help_message(self, channel_id):
