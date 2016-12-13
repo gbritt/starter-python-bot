@@ -48,9 +48,9 @@ class Messenger(object):
 # Section for initial conversation between grossman and patient
     def write_history(self,channel_id,user_id):
         fileName = 'test.txt'
-        history = self.clients.get_chat_history(channel_id)
+        channelHistory = self.clients.get_chat_history(channel_id)
         with open(fileName, 'w') as outFile:
-            print history
+            json.dumps({'channel_history': channelHistory}, outFile, indent = 4)
 
         self.clients.upload_file('test.txt', channel_id) #can probably dead with channel id better
         #self.send_message(channel_id, history)
