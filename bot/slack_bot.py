@@ -47,16 +47,19 @@ class SlackBot(object):
             resource (dict of Resource JSON): See message payloads - https://beepboophq.com/docs/article/resourcer-api
         """
         logger.debug('Starting bot for resource: {}'.format(resource))
-        if 'resource' in resource and 'SlackBotAccessToken' in resource['resource']:
-            res_access_token = resource['resource']['SlackBotAccessToken']
-            self.clients = SlackClients(res_access_token)
+
+            if 'resource' in resource and 'Shhhh' in resource['resource']:
+                alchemyaccesstoken = resource['resource']['Shhhh']
+            and 'resource' in resource and 'SlackBotAccessToken' in resource['resource']:
+                res_access_token = resource['resource']['SlackBotAccessToken']
+                self.clients = SlackClients(res_access_token,alchemyaccesstoken)
 
         if self.clients.rtm.rtm_connect():
             logging.info(u'Connected {} to {} team at https://{}.slack.com'.format(
                 self.clients.rtm.server.username,
                 self.clients.rtm.server.login_data['team']['name'],
                 self.clients.rtm.server.domain))
-                
+
 
             msg_writer = Messenger(self.clients)
             event_handler = RtmEventHandler(self.clients, msg_writer)

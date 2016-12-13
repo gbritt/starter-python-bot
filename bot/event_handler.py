@@ -36,6 +36,11 @@ class RtmEventHandler(object):
         else:
             if 'type' in event:
                 self._handle_by_type(event['type'], event)
+    def checkNLP(self,event):
+        if ('user' in event) and (not self.clients.is_message_from_me(event['user'])):
+            msg_txt = event['text']
+
+
 
 
     def _handle_by_type(self, event_type, event):

@@ -1,7 +1,12 @@
 
 # nltk implementation
+import json
+import logging
+import re
+import nltk
 
 
+'''
 
 dat=str(nltk.data.load('corpora/final_dataset/'+str(address),format='raw')).lower()#dat contains data of the current text files
         tokenizer=list(sent_tokenize(dat))#all the data being tokenized into sentences and made alist of that
@@ -55,3 +60,4 @@ dat=str(nltk.data.load('corpora/final_dataset/'+str(address),format='raw')).lowe
             filewrite.write("%s," % all_items)
         filewrite.close()
     print("done for another category:")
+    '''
