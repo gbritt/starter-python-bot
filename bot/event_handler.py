@@ -73,7 +73,7 @@ class RtmEventHandler(object):
                     self.msg_writer.write_convo1(event['channel'], event['user'])
                     conversation_started = 'True'
                     convo_step = '2'
-                    self.msg_writer.write_history(event['channel'], event['user'])
+                    self.msg_writer.text_attachment(event['channel'], event['user'])
 
                 elif 'joke' in msg_txt:
                     self.msg_writer.write_joke(event['channel'])
@@ -92,8 +92,7 @@ class RtmEventHandler(object):
                     self.msg_writer.write_convo2_1(event['channel'], event['user'])
                     self.msg_writer.write_convo2_2(event['channel'], event['user'])
                     convo_step = '3'
-                    self.msg_writer.write_history(event['channel'], event['user'])
-                    self.msg_writer.text_attachment(event['channel'], event['user'])
+
                 elif convo_step == '2' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
                     self.msg_writer.write_convo2_neg(event['channel'], event['user'])
                     convo_step = '1'
@@ -119,7 +118,6 @@ class RtmEventHandler(object):
                 elif convo_step == '5' and re.search('Yes|Yeah|yes|yeah|yup|Yup|mhm|mhmm|yessir|yessm|yes mam|yar|yuo|yul|ok', msg_txt):
                     self.msg_writer.write_convo5(event['channel'], event['user'])
                     convo_step = '1'
-                    self.write_history(event['channel'], event['user'])
                     conversation_started = 'False'
                 elif convo_step == '5' and re.search('no|No|NO|Nah|nah|nope|never', msg_txt):
                     self.msg_writer.write_convo5_neg(event['channel'], event['user'])

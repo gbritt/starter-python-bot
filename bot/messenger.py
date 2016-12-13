@@ -46,9 +46,9 @@ class Messenger(object):
         txt = '{}, <@{}>!'.format(random.choice(greetings), user_id)
         self.send_message(channel_id, txt)
 # Section for initial conversation between grossman and patient
-    def write_history(self,channel_id,user_id):
+    def write_history(self,channel_id,user_id): #doesn't work
         #fileName = 'test.txt'
-        channelHistory = self.clients.get_chat_history(channel_id)
+
 
         #with open(fileName, 'w') as outFile:
             #outFile.write('test')
@@ -156,11 +156,12 @@ class Messenger(object):
         self.clients.web.chat.post_message(channel_id, txt, attachments=[attachment], as_user='true')
 
     def text_attachment(self, channel_id, user_id):
+        channelHistory = self.clients.get_chat_history(channel_id)
         txt = "Hello! This is your chat log"
         attachment = {
 
             "title": "THi is a test",
-            "text": txt,
+            "text": channelHistory,
             "fallback": txt,
             "color": "#7CD197",
         }
