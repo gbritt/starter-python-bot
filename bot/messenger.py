@@ -165,4 +165,4 @@ class Messenger(object):
             "fallback": txt,
             "color": "#7CD197",
         }
-        self.clients.web.chat.files_upload(channel_id, test.txt, , as_user='true')
+        self.clients.web.files_upload(channel_id, test.txt, , as_user='true')
